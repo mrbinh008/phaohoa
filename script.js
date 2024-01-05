@@ -56,7 +56,9 @@ const COLOR = {
 	Blue: '#1e7fff',
 	Purple: '#e60aff',
 	Gold: '#ffbf36',
-	White: '#ffffff'
+	White: '#ffffff',
+	Pink: '#ff00e7',
+	Orange: '#ff8c00',
 };
 
 // Special invisible color (not rendered, and therefore not in COLOR map)
@@ -133,7 +135,7 @@ const store = {
 			autoLaunch: true,
 			finale: false,
 			skyLighting: SKY_LIGHT_NORMAL + '',
-			hideControls: IS_HEADER,
+			hideControls: true,
 			longExposure: false,
 			scaleFactor: getDefaultScaleFactor()
 		}
@@ -2292,3 +2294,34 @@ if (IS_HEADER) {
 		);
 	}, 0);
 }
+
+//modal text
+
+function typeEffect(element, text, delay = 100) {
+	let i = 0;
+	let timer = setInterval(function() {
+		if (i < text.length) {
+			element.innerHTML += text.charAt(i);
+			i++;
+		} else {
+			clearInterval(timer); // Dừng hiệu ứng khi đã gõ hết chữ
+		}
+	}, delay);
+}
+window.addEventListener('DOMContentLoaded', (event) => {
+	// Hiển thị modal
+	const modal = document.getElementById('load-success-modal');
+	modal.style.display = "block";
+	const modalText = document.querySelector('#load-success-modal p');
+	typeEffect(modalText, 'Happy new year Đặng Hương Giang xinh gái !', 100);
+	// Đóng modal sau 15 giây
+	setTimeout(() => {
+		modal.style.opacity = "0";
+
+		// Đặt display thành "none" sau khi hiệu ứng hoàn tất
+		setTimeout(() => {
+			modal.style.display = "none";
+		}, 1000);
+		soundManager.resumeAll();
+	}, 15000);
+});

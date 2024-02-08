@@ -427,14 +427,17 @@ body {
     background-color: transparent;
     margin: 15% auto;
     padding: 20px;
-    width: 55%;
+    width: 100%;
+    wrap-option: wrap;
 }
 
 
 #load-success-modal p {
     color: #fff;
     overflow: hidden;
-    white-space: nowrap;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
     margin: 0 auto;
     font-size: 32px;
     text-align: center;
